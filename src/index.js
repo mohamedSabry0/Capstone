@@ -1,4 +1,3 @@
-import commentsPopup from './comments.js';
 import './style.scss';
 
 function component() {
@@ -10,5 +9,3 @@ function component() {
 }
 
 document.body.appendChild(component());
-
-document.body.addEventListener('click', commentsPopup);
