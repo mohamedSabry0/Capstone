@@ -1,14 +1,12 @@
-const url = "https://api.quran.com/api/v4/chapters?language=en";
+const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
 async function getLoc() {
   const response = await fetch(url);
   const data = await response.json();
-  const {chapters} = data;
-  console.log(data);
-  console.log(chapters);
+  const { chapters } = data;
 
   const mainSection = document.querySelector('.main-section');
-  for(let i = 0; i < chapters.length; i += 1){
+  for (let i = 0; i < chapters.length; i += 1) {
     const div = document.createElement('div');
     mainSection.append(div);
     const title = document.createElement('h2');
