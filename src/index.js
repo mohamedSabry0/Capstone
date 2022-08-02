@@ -1,11 +1,6 @@
 import './style.scss';
+import getLoc from './modules/displayList.js';
 
-function component() {
-  const element = document.createElement('div');
-
-  element.classList.add('hello');
-
-  return element;
-}
-
-document.body.appendChild(component());
+window.addEventListener('DOMContentLoaded', async () => {
+  getLoc();
+});
