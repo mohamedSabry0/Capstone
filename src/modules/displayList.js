@@ -1,3 +1,5 @@
+import commentsPopup from './comments.js';
+
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
 async function getLoc() {
@@ -10,6 +12,7 @@ async function getLoc() {
     const div = document.createElement('div');
     mainSection.append(div);
     const title = document.createElement('h2');
+    div.id = chapters[i].id;
     div.append(title);
     title.textContent = `${chapters[i].name_simple}`;
     const arabicName = document.createElement('h3');
@@ -17,6 +20,8 @@ async function getLoc() {
     arabicName.textContent = `${chapters[i].name_arabic}`;
     const resButton = document.createElement('button');
     resButton.setAttribute('type', 'submit');
+    resButton.textContent = 'Comments';
+    resButton.addEventListener('click', commentsPopup);
     div.append(resButton);
   }
 }

@@ -29,7 +29,7 @@ const cardGenerator = async (chapter, container) => {
   const versesCount = document.createElement('span');
   revelationOrder.textContent = `revelation order: ${surah.revelation_order}`;
   revelationPlace.textContent = `revelation place: ${surah.revelation_place}`;
-  bismillahPre.textContent = 'bismillah before Recommended?';
+  bismillahPre.textContent = 'bismillah before Recommended? ';
   bismillahPre.textContent += surah.bismillah_pre ? 'yes' : 'should not say';
   nameArabic.textContent = `Name in Arabic: ${surah.name_arabic}`;
   nameSimple.textContent = `Name in English: ${surah.name_simple}`;
