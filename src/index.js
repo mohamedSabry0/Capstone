@@ -1,7 +1,5 @@
-import CommentsHandler from './comments';
+import commentsPopup from './comments.js';
 import './style.scss';
-
-const commentsHandler = new CommentsHandler();
 
 function component() {
   const element = document.createElement('div');
@@ -13,4 +11,4 @@ function component() {
 
 document.body.appendChild(component());
 
-document.body.addEventListener('click', commentsHandler)
+document.body.addEventListener('click', commentsPopup);
