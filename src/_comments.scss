@@ -1,0 +1,14 @@
+.comments-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000;
+  padding: 1.5em;
+}
+
+.close-btn {
+  background: no-repeat center/contain url('./assets/closeIcn.png');
+  border: none;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
