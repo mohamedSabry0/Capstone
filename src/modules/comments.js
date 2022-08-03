@@ -1,3 +1,5 @@
+import { getComments, postComment } from "./commentsMethods.js";
+
 const getSurah = async (id) => {
   const surahURL = `https://api.quran.com/api/v4/chapters/${id}`;
   const { chapter } = await fetch(surahURL)
@@ -11,6 +13,17 @@ const closePopup = {
     event.target.parentElement.remove();
   },
 };
+
+const listComments = (list) => {
+  const commentsUl = document.createElement('ul');
+  list.forEach(item => {
+    const commentLi = document.createElement('span');
+    commentLi.textContent = `${item.creation_date} by ${item.username}: ${item.comment}`;
+    commentsUl.appendChild(commentLi);
+  });
+  return commentsUl;
+}
+
 
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
@@ -34,9 +47,12 @@ const cardGenerator = async (chapter, container) => {
   nameArabic.textContent = `Name in Arabic: ${surah.name_arabic}`;
   nameSimple.textContent = `Name in English: ${surah.name_simple}`;
   versesCount.textContent = `Verses count ${surah.verses_count}`;
+
+  const comments = await getComments(surah.id);
+  const commentsUl = listComments(comments);
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
-
+  card.append(commentsUl);
   container.appendChild(card);
 };
 
