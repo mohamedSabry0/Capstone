@@ -10,14 +10,13 @@ const commentsList = (list) => {
   return commentsUl;
 };
 
-
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
   const card = document.createElement('div');
   card.classList.add('comments-card');
   const closeIcon = document.createElement('button');
   closeIcon.classList.add('close-btn');
-  closeIcon.addEventListener('click', (e) =>{
+  closeIcon.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   });
 
