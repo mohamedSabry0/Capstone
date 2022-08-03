@@ -1,4 +1,4 @@
-import { getComments, postComment } from "./commentsMethods.js";
+import { getComments } from './commentsMethods.js';
 
 const getSurah = async (id) => {
   const surahURL = `https://api.quran.com/api/v4/chapters/${id}`;
@@ -16,14 +16,13 @@ const closePopup = {
 
 const listComments = (list) => {
   const commentsUl = document.createElement('ul');
-  list.forEach(item => {
+  list.forEach((item) => {
     const commentLi = document.createElement('span');
     commentLi.textContent = `${item.creation_date} by ${item.username}: ${item.comment}`;
     commentsUl.appendChild(commentLi);
   });
   return commentsUl;
-}
-
+};
 
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
