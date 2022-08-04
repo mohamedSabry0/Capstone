@@ -1,5 +1,6 @@
-import commentsPopup from './comments.js';
+import commentsPopup from './showComments.js';
 import { sendLike, getLike } from './like.js';
+
 
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
