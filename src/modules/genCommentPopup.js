@@ -1,15 +1,13 @@
-const getSurah = async (id) => {
-  const surahURL = `https://api.quran.com/api/v4/chapters/${id}`;
-  const { chapter } = await fetch(surahURL)
-    .then((res) => res.json());
+import { getComments } from './commentsMethods.js';
 
-  return chapter;
-};
-
-const closePopup = {
-  handleEvent(event) {
-    event.target.parentElement.remove();
-  },
+const commentsList = (list) => {
+  const commentsUl = document.createElement('ul');
+  list.forEach((item) => {
+    const commentLi = document.createElement('span');
+    commentLi.textContent = `${item.creation_date} by ${item.username}: ${item.comment}`;
+    commentsUl.appendChild(commentLi);
+  });
+  return commentsUl;
 };
 
 const cardGenerator = async (chapter, container) => {
@@ -18,7 +16,9 @@ const cardGenerator = async (chapter, container) => {
   card.classList.add('comments-card');
   const closeIcon = document.createElement('button');
   closeIcon.classList.add('close-btn');
-  closeIcon.addEventListener('click', closePopup);
+  closeIcon.addEventListener('click', (e) => {
+    e.target.parentElement.remove();
+  });
 
   const revelationPlace = document.createElement('span');
   const revelationOrder = document.createElement('span');
@@ -34,17 +34,13 @@ const cardGenerator = async (chapter, container) => {
   nameArabic.textContent = `Name in Arabic: ${surah.name_arabic}`;
   nameSimple.textContent = `Name in English: ${surah.name_simple}`;
   versesCount.textContent = `Verses count ${surah.verses_count}`;
+
+  const comments = await getComments(surah.id);
+  const commentsUl = commentsList(comments);
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
-
+  card.append(commentsUl);
   container.appendChild(card);
 };
 
-const commentsPopup = {
-  handleEvent(event) {
-    const parentElem = event.target.parentElement;
-    cardGenerator(getSurah(parentElem.id), parentElem);
-  },
-};
-
-export default commentsPopup;
+export default cardGenerator;
