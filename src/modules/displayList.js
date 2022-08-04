@@ -1,4 +1,5 @@
 import commentsPopup from './showComments.js';
+import { sendLike } from './like.js';
 
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
@@ -18,6 +19,12 @@ async function getLoc() {
     const arabicName = document.createElement('h3');
     div.append(arabicName);
     arabicName.textContent = `${chapters[i].name_arabic}`;
+    const likeButton = document.createElement('input');
+    likeButton.type = 'checkbox';
+    likeButton.addEventListener('change', () => {
+      sendLike(chapters[i].id);
+    });
+    div.append(likeButton);
     const resButton = document.createElement('button');
     resButton.setAttribute('type', 'submit');
     resButton.textContent = 'Comments';
