@@ -4,12 +4,12 @@ import { sendLike, getLike } from './like.js';
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
 export const totalItems = (cards) => {
-    let counter = 0;
-    for (let i = 0; i < cards.length; i += 1) {
-      counter += 1;
-    }
-    return counter;
-  };
+  let counter = 0;
+  for (let i = 0; i < cards.length; i += 1) {
+    counter += 1;
+  }
+  return counter;
+};
 
 export async function getLoc() {
   const response = await fetch(url);
@@ -18,7 +18,6 @@ export async function getLoc() {
   const likeOnApi = await getLike();
   const cardsCount = chapters.length;
   console.log(cardsCount);
-
 
   console.log(totalItems(chapters));
 
@@ -30,9 +29,8 @@ export async function getLoc() {
   const mainSection = document.querySelector('.main-section');
 
   for (let i = 0; i < chapters.length; i += 1) {
-
     const div = document.createElement('div');
-    div.classList.add('card')
+    div.classList.add('card');
     mainSection.append(div);
 
     const imageDiv = document.createElement('div');
@@ -60,14 +58,6 @@ export async function getLoc() {
     resButton.addEventListener('click', commentsPopup);
     likeComment.append(resButton);
 
-    const likeButton = document.createElement('input');
-    likeButton.type = 'checkbox';
-    likeButton.addEventListener('change', () => {
-      sendLike(chapters[i].id);
-      likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
-    });
-    likeComment.append(likeButton);
-
     const likeCount = document.createElement('p');
     likeOnApi.forEach((item) => {
       if (item.item_id === chapters[i].id) {
@@ -77,5 +67,12 @@ export async function getLoc() {
     likeCount.textContent = likeCount.textContent || 0;
     likeComment.append(likeCount);
 
+    const likeButton = document.createElement('input');
+    likeButton.type = 'checkbox';
+    likeButton.addEventListener('change', () => {
+      sendLike(chapters[i].id);
+      likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
+    });
+    likeComment.append(likeButton);
   }
 }
