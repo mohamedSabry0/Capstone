@@ -10,10 +10,22 @@ body {
 }
 
 .footer {
-  bottom: 0;
+  align-self: flex-end;
   position: absolute;
   width: 100%;
   text-align: center;
   border: 1px solid;
   left: 0;
 }
+
+.main-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.image-quran {
+  background: url(./assets/quran.jpg) no-repeat center/contain;
+  width: 30px;
+  height: 30px;
+}
+

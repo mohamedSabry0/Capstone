@@ -8,11 +8,31 @@ async function getLoc() {
   const data = await response.json();
   const { chapters } = data;
   const likeOnApi = await getLike();
+  const cardsCount = chapters.length;
+  console.log(cardsCount);
+
+  const totalItems = (cards) => {
+    let counter = 0;
+    for (let i = 0; i < cards.length; i += 1) {
+      counter += 1;
+    }
+    return counter;
+  };
+
+  console.log(totalItems(chapters));
+
+  const itemsCounter = document.createElement('span');
+  const nav = document.querySelector('.nav');
+  nav.append(itemsCounter);
+  itemsCounter.textContent = totalItems(chapters);
 
   const mainSection = document.querySelector('.main-section');
   for (let i = 0; i < chapters.length; i += 1) {
     const div = document.createElement('div');
     mainSection.append(div);
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('image-quran');
+    div.append(imageDiv);
     const title = document.createElement('h2');
     div.id = chapters[i].id;
     div.append(title);
