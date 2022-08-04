@@ -1,17 +1,24 @@
+import genCommentLi from './commentItem.js';
 import { getComments } from './commentsMethods.js';
+import commentForm from './newComment.js';
 
-const commentsList = (list) => {
-  const commentsUl = document.createElement('ul');
-  list.forEach((item) => {
-    const commentLi = document.createElement('span');
-    commentLi.textContent = `${item.creation_date} by ${item.username}: ${item.comment}`;
-    commentsUl.appendChild(commentLi);
-  });
+const commentsList = (parent, list) => {
+  const commentsUl = parent.querySelector('ul');
+  console.log(typeof (list));
+  if (typeof (list) === 'string') {
+    const message = document.createElement('li');
+    message.textContent = list;
+    commentsUl.appendChild(message);
+    return commentsUl;
+  }
+
+  list.forEach((item) => commentsUl.appendChild(genCommentLi(item)));
   return commentsUl;
 };
 
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
+  const commentsUl = document.createElement('ul');
   const card = document.createElement('div');
   card.classList.add('comments-card');
   const closeIcon = document.createElement('button');
@@ -36,10 +43,12 @@ const cardGenerator = async (chapter, container) => {
   versesCount.textContent = `Verses count ${surah.verses_count}`;
 
   const comments = await getComments(surah.id);
-  const commentsUl = commentsList(comments);
+
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
   card.append(commentsUl);
+  commentsList(card, comments);
+  card.append(...commentForm());
   container.appendChild(card);
 };
 

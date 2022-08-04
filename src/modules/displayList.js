@@ -1,4 +1,4 @@
-import commentsPopup from './showComments.js';
+import { commentsPopup } from './showComments.js';
 
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
