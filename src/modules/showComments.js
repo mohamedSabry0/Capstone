@@ -15,4 +15,7 @@ const commentsPopup = {
   },
 };
 
-export default commentsPopup;
+export {
+  commentsPopup,
+  getSurah,
+};
