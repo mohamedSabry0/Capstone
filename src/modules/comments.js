@@ -2,7 +2,7 @@ const getSurah = async (id) => {
   const surahURL = `https://api.quran.com/api/v4/chapters/${id}`;
   const { chapter } = await fetch(surahURL)
     .then((res) => res.json());
-
+  console.log(chapter);
   return chapter;
 };
 
@@ -42,7 +42,7 @@ const cardGenerator = async (chapter, container) => {
 
 const commentsPopup = {
   handleEvent(event) {
-    const parentElem = event.target.parentElement;
+    const parentElem = event.target.parentElement.parentElement;
     cardGenerator(getSurah(parentElem.id), parentElem);
   },
 };
