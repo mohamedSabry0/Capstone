@@ -10,7 +10,7 @@ const getSurah = async (id) => {
 
 const commentsPopup = {
   handleEvent(event) {
-    const parentElem = event.target.parentElement;
+    const parentElem = event.target.parentElement.parentElement;
     cardGenerator(getSurah(parentElem.id), parentElem);
   },
 };
