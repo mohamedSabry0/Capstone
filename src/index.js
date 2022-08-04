@@ -1,5 +1,5 @@
 import './style.scss';
-import getLoc from './modules/displayList.js';
+import { getLoc } from './modules/displayList';
 import { getLike } from './modules/like.js';
 
 window.addEventListener('DOMContentLoaded', async () => {
