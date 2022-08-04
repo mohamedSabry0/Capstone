@@ -1,24 +1,31 @@
-const getSurah = async (id) => {
-  const surahURL = `https://api.quran.com/api/v4/chapters/${id}`;
-  const { chapter } = await fetch(surahURL)
-    .then((res) => res.json());
+import genCommentLi from './commentItem.js';
+import { getComments } from './commentsMethods.js';
+import commentForm from './newComment.js';
 
-  return chapter;
-};
+const commentsList = (parent, list) => {
+  const commentsUl = parent.querySelector('ul');
+  console.log(typeof (list));
+  if (typeof (list) === 'string') {
+    const message = document.createElement('li');
+    message.textContent = list;
+    commentsUl.appendChild(message);
+    return commentsUl;
+  }
 
-const closePopup = {
-  handleEvent(event) {
-    event.target.parentElement.remove();
-  },
+  list.forEach((item) => commentsUl.appendChild(genCommentLi(item)));
+  return commentsUl;
 };
 
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
+  const commentsUl = document.createElement('ul');
   const card = document.createElement('div');
   card.classList.add('comments-card');
   const closeIcon = document.createElement('button');
   closeIcon.classList.add('close-btn');
-  closeIcon.addEventListener('click', closePopup);
+  closeIcon.addEventListener('click', (e) => {
+    e.target.parentElement.remove();
+  });
 
   const revelationPlace = document.createElement('span');
   const revelationOrder = document.createElement('span');
@@ -34,17 +41,15 @@ const cardGenerator = async (chapter, container) => {
   nameArabic.textContent = `Name in Arabic: ${surah.name_arabic}`;
   nameSimple.textContent = `Name in English: ${surah.name_simple}`;
   versesCount.textContent = `Verses count ${surah.verses_count}`;
+
+  const comments = await getComments(surah.id);
+
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
-
+  card.append(commentsUl);
+  commentsList(card, comments);
+  card.append(...commentForm());
   container.appendChild(card);
 };
 
-const commentsPopup = {
-  handleEvent(event) {
-    const parentElem = event.target.parentElement;
-    cardGenerator(getSurah(parentElem.id), parentElem);
-  },
-};
-
-export default commentsPopup;
+export default cardGenerator;
