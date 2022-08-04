@@ -1,10 +1,11 @@
 import genCommentLi from './commentItem.js';
 import { getComments } from './commentsMethods.js';
+import countComments from './countComments.js';
 import commentForm from './newComment.js';
 
 const commentsList = (parent, list) => {
   const commentsUl = parent.querySelector('ul');
-  console.log(typeof (list));
+  console.log(list);
   if (typeof (list) === 'string') {
     const message = document.createElement('li');
     message.textContent = list;
@@ -15,8 +16,6 @@ const commentsList = (parent, list) => {
   list.forEach((item) => commentsUl.appendChild(genCommentLi(item)));
   return commentsUl;
 };
-
-const commentsCount = ((list) => list.length);
 
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
@@ -46,7 +45,8 @@ const cardGenerator = async (chapter, container) => {
 
   const sectionTitle = document.createElement('p');
   const comments = await getComments(surah.id);
-  sectionTitle.textContent = `Comments (${commentsCount(comments)})`;
+
+  sectionTitle.textContent = `Comments (${countComments(comments)})`;
 
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
