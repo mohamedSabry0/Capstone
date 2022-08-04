@@ -3,7 +3,15 @@ import { sendLike, getLike } from './like.js';
 
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
-async function getLoc() {
+export const totalItems = (cards) => {
+    let counter = 0;
+    for (let i = 0; i < cards.length; i += 1) {
+      counter += 1;
+    }
+    return counter;
+  };
+
+export async function getLoc() {
   const response = await fetch(url);
   const data = await response.json();
   const { chapters } = data;
@@ -11,13 +19,6 @@ async function getLoc() {
   const cardsCount = chapters.length;
   console.log(cardsCount);
 
-  const totalItems = (cards) => {
-    let counter = 0;
-    for (let i = 0; i < cards.length; i += 1) {
-      counter += 1;
-    }
-    return counter;
-  };
 
   console.log(totalItems(chapters));
 
@@ -78,5 +79,3 @@ async function getLoc() {
 
   }
 }
-
-export default getLoc;
