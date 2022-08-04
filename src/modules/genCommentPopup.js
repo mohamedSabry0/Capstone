@@ -16,6 +16,8 @@ const commentsList = (parent, list) => {
   return commentsUl;
 };
 
+const commentsCount = ((list) => list.length);
+
 const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
   const commentsUl = document.createElement('ul');
@@ -42,11 +44,13 @@ const cardGenerator = async (chapter, container) => {
   nameSimple.textContent = `Name in English: ${surah.name_simple}`;
   versesCount.textContent = `Verses count ${surah.verses_count}`;
 
+  const sectionTitle = document.createElement('p');
   const comments = await getComments(surah.id);
+  sectionTitle.textContent = `Comments (${commentsCount(comments)})`;
 
   card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
   card.append(versesCount, revelationPlace, bismillahPre);
-  card.append(commentsUl);
+  card.append(sectionTitle, commentsUl);
   commentsList(card, comments);
   card.append(...commentForm());
   container.appendChild(card);
