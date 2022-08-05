@@ -23,8 +23,9 @@ export async function getLoc() {
 
   const itemsCounter = document.createElement('span');
   const nav = document.querySelector('.nav');
+  itemsCounter.classList.add('item-counter')
   nav.append(itemsCounter);
-  itemsCounter.textContent = totalItems(chapters);
+  itemsCounter.textContent = `Total Cards Number: ${totalItems(chapters)}`;
 
   const mainSection = document.querySelector('.main-section');
 
@@ -52,12 +53,7 @@ export async function getLoc() {
     likeComment.classList.add('likeComment-holder');
     div.append(likeComment);
 
-    const resButton = document.createElement('button');
-    resButton.setAttribute('type', 'submit');
-    resButton.classList.add('comment-btn')
-    resButton.textContent = 'Comments';
-    resButton.addEventListener('click', commentsPopup);
-    likeComment.append(resButton);
+    
 
     const likeCount = document.createElement('p');
     likeOnApi.forEach((item) => {
@@ -80,5 +76,12 @@ export async function getLoc() {
       likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
     });
     likeComment.append(likeButton);
+
+    const resButton = document.createElement('button');
+    resButton.setAttribute('type', 'submit');
+    resButton.classList.add('comment-btn')
+    resButton.textContent = 'Comments';
+    resButton.addEventListener('click', commentsPopup);
+    likeComment.append(resButton);
   }
 }
