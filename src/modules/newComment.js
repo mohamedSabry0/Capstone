@@ -1,5 +1,6 @@
 import genCommentLi from './commentItem.js';
 import { postComment, getComments } from './commentsMethods.js';
+import countComments from './countComments.js';
 
 const handlePostComment = {
   handleEvent(event) {
@@ -16,9 +17,9 @@ const handlePostComment = {
         nameInput.value = '';
         commentInput.value = '';
         const ul = parent.querySelector('ul');
-
         const list = await getComments(parent.parentElement.id);
         ul.innerHTML = '';
+        parent.querySelector('.comments-title').textContent = `Comments (${countComments(list)})`;
         list.forEach((element) => {
           ul.appendChild(genCommentLi(element));
         });
@@ -32,6 +33,7 @@ const commentForm = () => {
   nameInput.classList.add('input');
   commentInput.classList.add('input');
   const commentButton = document.createElement('button');
+  commentButton.classList.add('comment-btn');
   commentButton.type = 'submit';
   commentButton.textContent = 'Comment';
   commentButton.addEventListener('click', handlePostComment);

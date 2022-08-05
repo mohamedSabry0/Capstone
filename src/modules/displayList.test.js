@@ -1,4 +1,4 @@
-import { totalItems } from './displayList';
+import { totalItems } from './displayList.js';
 
 const dummyObject = [
   {

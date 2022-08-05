@@ -5,7 +5,6 @@ import commentForm from './newComment.js';
 
 const commentsList = (parent, list) => {
   const commentsUl = parent.querySelector('ul');
-  console.log(list);
   if (typeof (list) === 'string') {
     const message = document.createElement('li');
     message.textContent = list;
@@ -27,7 +26,7 @@ const cardGenerator = async (chapter, container) => {
   const closeIcon = document.createElement('button');
   closeIcon.classList.add('close-btn');
   closeIcon.addEventListener('click', (e) => {
-    e.target.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
   });
 
   const revelationPlace = document.createElement('span');
@@ -36,6 +35,7 @@ const cardGenerator = async (chapter, container) => {
   const nameSimple = document.createElement('span');
   const nameArabic = document.createElement('span');
   const versesCount = document.createElement('span');
+
   revelationOrder.textContent = `revelation order: ${surah.revelation_order}`;
   revelationPlace.textContent = `revelation place: ${surah.revelation_place}`;
   bismillahPre.textContent = 'bismillah before Recommended? ';
@@ -48,7 +48,7 @@ const cardGenerator = async (chapter, container) => {
   const comments = await getComments(surah.id);
 
   sectionTitle.textContent = `Comments (${countComments(comments)})`;
-
+  sectionTitle.classList.add('comments-title');
   card.append(closeIcon, nameSimple, nameArabic, revelationOrder);
 
   card.append(versesCount, revelationPlace, bismillahPre);

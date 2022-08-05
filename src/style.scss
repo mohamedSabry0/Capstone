@@ -22,6 +22,8 @@ body {
   text-align: center;
   border: 1px solid;
   left: 0;
+  color: #fff;
+  font-weight: 700;
 }
 
 .main-section {
@@ -50,7 +52,7 @@ body {
 
 .love {
   color: #fff;
-  background-color: #000;
+  background-color: rgb(255, 255, 255, 0);
 }
 
 .love:active {
@@ -58,7 +60,9 @@ body {
 }
 
 .comment-btn {
-  padding: 5px;
+  height: 2rem;
+  background-color: rgb(255, 255, 255, 0);
+  color: #fff;
 }
 
 .heading {
@@ -68,7 +72,7 @@ body {
 
 .likeComment-holder {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
 }
 
@@ -81,4 +85,8 @@ body {
 
 .tophead {
   font-size: 3vw;
+}
+
+.item-counter {
+  color: #fff;
 }
