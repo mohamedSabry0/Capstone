@@ -1,4 +1,4 @@
-const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/ypC1aUu3q5JApTEBlsFl/';
+const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Y73PjagOn0PIaLwLW8ue/';
 
 const postComment = (comment) => {
   console.info('sending comment...', 'loading...');
