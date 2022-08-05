@@ -1,6 +1,6 @@
 .logo {
-  width: 3.5em;
-  height: 3.5em;
+  width: 5rem;
+  height: 5rem;
   background: no-repeat center/contain url('./assets/quran.jpg');
   border-radius: 100%;
 }
@@ -9,6 +9,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 5rem;
 }
 
 nav {
@@ -17,6 +18,6 @@ nav {
 
   a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
   }
 }

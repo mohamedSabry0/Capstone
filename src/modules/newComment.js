@@ -3,7 +3,7 @@ import { postComment, getComments } from './commentsMethods.js';
 
 const handlePostComment = {
   handleEvent(event) {
-    const parent = event.target.parentElement;
+    const parent = event.target.parentElement.parentElement;
     const nameInput = parent.querySelector('input');
     const commentInput = parent.querySelector('textarea');
     const commentObj = {

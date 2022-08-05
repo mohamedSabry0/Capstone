@@ -21,6 +21,8 @@ const cardGenerator = async (chapter, container) => {
   const surah = await chapter;
   const commentsUl = document.createElement('ul');
   const card = document.createElement('div');
+  const popupContainer = document.createElement('div');
+  popupContainer.classList.add('popup-container');
   card.classList.add('comments-card');
   const closeIcon = document.createElement('button');
   closeIcon.classList.add('close-btn');
@@ -32,7 +34,6 @@ const cardGenerator = async (chapter, container) => {
   const revelationOrder = document.createElement('span');
   const bismillahPre = document.createElement('span');
   const nameSimple = document.createElement('span');
-  const nameComplex = document.createElement('span');
   const nameArabic = document.createElement('span');
   const versesCount = document.createElement('span');
   revelationOrder.textContent = `revelation order: ${surah.revelation_order}`;
@@ -48,12 +49,14 @@ const cardGenerator = async (chapter, container) => {
 
   sectionTitle.textContent = `Comments (${countComments(comments)})`;
 
-  card.append(closeIcon, nameSimple, nameArabic, nameComplex, revelationOrder);
+  card.append(closeIcon, nameSimple, nameArabic, revelationOrder);
+
   card.append(versesCount, revelationPlace, bismillahPre);
   card.append(sectionTitle, commentsUl);
   commentsList(card, comments);
   card.append(...commentForm());
-  container.appendChild(card);
+  popupContainer.append(card);
+  container.appendChild(popupContainer);
 };
 
 export default cardGenerator;

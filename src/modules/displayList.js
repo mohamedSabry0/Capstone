@@ -54,6 +54,7 @@ export async function getLoc() {
 
     const resButton = document.createElement('button');
     resButton.setAttribute('type', 'submit');
+    resButton.classList.add('comment-btn')
     resButton.textContent = 'Comments';
     resButton.addEventListener('click', commentsPopup);
     likeComment.append(resButton);
@@ -67,9 +68,14 @@ export async function getLoc() {
     likeCount.textContent = likeCount.textContent || 0;
     likeComment.append(likeCount);
 
-    const likeButton = document.createElement('input');
-    likeButton.type = 'checkbox';
-    likeButton.addEventListener('change', () => {
+    const likeButton = document.createElement('button');
+    likeButton.type = 'button';
+    likeButton.classList.add('love')
+    const loveIcon = document.createElement('i');
+    loveIcon.classList.add('material-icons');
+    loveIcon.textContent = 'favorite';
+    likeButton.append(loveIcon);
+    likeButton.addEventListener('click', () => {
       sendLike(chapters[i].id);
       likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
     });
