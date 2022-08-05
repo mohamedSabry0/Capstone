@@ -32,6 +32,7 @@ const commentForm = () => {
   nameInput.classList.add('input');
   commentInput.classList.add('input');
   const commentButton = document.createElement('button');
+  commentButton.classList.add('comment-btn');
   commentButton.type = 'submit';
   commentButton.textContent = 'Comment';
   commentButton.addEventListener('click', handlePostComment);
