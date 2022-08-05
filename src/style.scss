@@ -1,7 +1,92 @@
+@import './header';
+@import './comments';
+
 .hello {
   color: rgb(58, 107, 180);
 }
 
 body {
-  background-color: bisque;
+  background: url(./assets/background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-blend-mode: darken;
+  color: #000;
+}
+
+.footer {
+  align-self: flex-end;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  border: 1px solid;
+  left: 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.main-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 3rem;
+}
+
+.image-quran {
+  background: url(./assets/quran.jpg) no-repeat center/contain;
+  width: 15rem;
+  height: 8rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  gap: 3px;
+  padding: 8px 0;
+  background-color: rgb(255, 255, 255, 0.5);
+  align-items: center;
+}
+
+.love {
+  color: #fff;
+  background-color: rgb(255, 255, 255, 0);
+}
+
+.love:active {
+  color: red;
+}
+
+.comment-btn {
+  height: 2rem;
+  background-color: rgb(255, 255, 255, 0);
+  color: #fff;
+}
+
+.heading {
+  font-size: 2vw;
+  margin: 2px;
+}
+
+.likeComment-holder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-section {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tophead {
+  font-size: 3vw;
+}
+
+.item-counter {
+  color: #fff;
 }

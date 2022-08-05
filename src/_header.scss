@@ -1,0 +1,24 @@
+.logo {
+  width: 5rem;
+  height: 5rem;
+  background: no-repeat center/contain url('./assets/quran.jpg');
+  border-radius: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 5rem;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  font-weight: 700;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
