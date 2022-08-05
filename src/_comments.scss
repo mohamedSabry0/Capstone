@@ -41,6 +41,11 @@
     border: 1px solid #ddd;
     width: 70%;
   }
+
+  button.comment-btn {
+    align-self: center;
+    color: #000;
+  }
 }
 
 .close-btn {
@@ -50,6 +55,7 @@
   height: 3em;
   border-radius: 10%;
   cursor: pointer;
+  align-self: flex-end;
   &:hover {
     background-color: rgba(206, 206, 206, 0.6);
   }

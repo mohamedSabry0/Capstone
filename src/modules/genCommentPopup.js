@@ -49,7 +49,7 @@ const cardGenerator = async (chapter, container) => {
   const comments = await getComments(surah.id);
 
   sectionTitle.textContent = `Comments (${countComments(comments)})`;
-
+  sectionTitle.classList.add('comments-title');
   card.append(closeIcon, nameSimple, nameArabic, revelationOrder);
 
   card.append(versesCount, revelationPlace, bismillahPre);

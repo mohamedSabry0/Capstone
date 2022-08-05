@@ -1,5 +1,6 @@
 import { commentsPopup } from './showComments.js';
 import { sendLike, getLike } from './like.js';
+import inStorage from './localStorage.js';
 
 const url = 'https://api.quran.com/api/v4/chapters?language=en';
 
@@ -23,7 +24,7 @@ export async function getLoc() {
 
   const itemsCounter = document.createElement('span');
   const nav = document.querySelector('.nav');
-  itemsCounter.classList.add('item-counter')
+  itemsCounter.classList.add('item-counter');
   nav.append(itemsCounter);
   itemsCounter.textContent = `Total Cards Number: ${totalItems(chapters)}`;
 
@@ -53,8 +54,6 @@ export async function getLoc() {
     likeComment.classList.add('likeComment-holder');
     div.append(likeComment);
 
-    
-
     const likeCount = document.createElement('p');
     likeOnApi.forEach((item) => {
       if (item.item_id === chapters[i].id) {
@@ -66,20 +65,22 @@ export async function getLoc() {
 
     const likeButton = document.createElement('button');
     likeButton.type = 'button';
-    likeButton.classList.add('love')
+    likeButton.classList.add('love');
     const loveIcon = document.createElement('i');
     loveIcon.classList.add('material-icons');
     loveIcon.textContent = 'favorite';
     likeButton.append(loveIcon);
     likeButton.addEventListener('click', () => {
-      sendLike(chapters[i].id);
-      likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
+      if (!inStorage(chapters[i].id)) {
+        sendLike(chapters[i].id);
+        likeCount.textContent = parseInt(likeCount.textContent, 10) + 1;
+      }
     });
     likeComment.append(likeButton);
 
     const resButton = document.createElement('button');
     resButton.setAttribute('type', 'submit');
-    resButton.classList.add('comment-btn')
+    resButton.classList.add('comment-btn');
     resButton.textContent = 'Comments';
     resButton.addEventListener('click', commentsPopup);
     likeComment.append(resButton);

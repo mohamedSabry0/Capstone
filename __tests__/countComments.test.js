@@ -1,4 +1,4 @@
-import commentsCount from '../src/modules/countComments';
+import commentsCount from '../src/modules/countComments.js';
 
 describe('comments counter', () => {
   const comments = [
