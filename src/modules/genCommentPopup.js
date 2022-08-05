@@ -5,7 +5,6 @@ import commentForm from './newComment.js';
 
 const commentsList = (parent, list) => {
   const commentsUl = parent.querySelector('ul');
-  console.log(list);
   if (typeof (list) === 'string') {
     const message = document.createElement('li');
     message.textContent = list;

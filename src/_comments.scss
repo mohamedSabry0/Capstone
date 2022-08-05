@@ -18,8 +18,9 @@
   position: relative;
   align-items: flex-start;
   background-color: rgba(255, 255, 235, 0.7);
-  
-  li, span {
+
+  li,
+  span {
     text-shadow: 0 0 0.03em black;
     border: 1px solid #aaa;
     border-radius: 8px;
@@ -27,15 +28,16 @@
     margin: 0.2em;
     width: 100%;
   }
+
   ul {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
-
   }
 
-  input, textarea {
+  input,
+  textarea {
     align-self: center;
     margin: 0.2em;
     border: 1px solid #ddd;
@@ -56,6 +58,7 @@
   border-radius: 10%;
   cursor: pointer;
   align-self: flex-end;
+
   &:hover {
     background-color: rgba(206, 206, 206, 0.6);
   }

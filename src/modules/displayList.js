@@ -17,10 +17,6 @@ export async function getLoc() {
   const data = await response.json();
   const { chapters } = data;
   const likeOnApi = await getLike();
-  const cardsCount = chapters.length;
-  console.log(cardsCount);
-
-  console.log(totalItems(chapters));
 
   const itemsCounter = document.createElement('span');
   const nav = document.querySelector('.nav');
